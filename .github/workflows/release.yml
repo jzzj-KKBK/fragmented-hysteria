@@ -22,7 +22,7 @@ jobs:
         run: echo "version=$(git describe --tags --always --match 'app/v*' | sed -n 's|app/\([^/-]*\)\(-.*\)\{0,1\}|\1|p')" >> $GITHUB_OUTPUT
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
