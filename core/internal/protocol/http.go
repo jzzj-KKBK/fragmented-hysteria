@@ -9,10 +9,10 @@ const (
 	URLHost = "hysteria"
 	URLPath = "/robots.txt"
 
-	RequestHeaderAuth        = "Hysteria-Auth"
-	ResponseHeaderUDPEnabled = "Hysteria-UDP"
-	CommonHeaderCCRX         = "Hysteria-CC-RX"
-	CommonHeaderPadding      = "Hysteria-Padding"
+	RequestHeaderAuth        = "233"
+	ResponseHeaderUDPEnabled = "233"
+	CommonHeaderCCRX         = "233"
+	CommonHeaderPadding      = "233"
 
 	StatusAuthOK = 500
 )
