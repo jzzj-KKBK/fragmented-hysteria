@@ -6,13 +6,13 @@ import (
 )
 
 const (
-	URLHost = "hysteria"
+	URLHost = "213123"
 	URLPath = "/robots.txt"
 
 	RequestHeaderAuth        = "233"
-	ResponseHeaderUDPEnabled = "233"
-	CommonHeaderCCRX         = "233"
-	CommonHeaderPadding      = "233"
+	ResponseHeaderUDPEnabled = "2333"
+	CommonHeaderCCRX         = "23"
+	CommonHeaderPadding      = "233333"
 
 	StatusAuthOK = 500
 )
