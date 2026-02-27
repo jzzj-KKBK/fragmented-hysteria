@@ -67,7 +67,7 @@ jobs:
         file: ${{ fromJson(needs.build.outputs.files) }}
     steps:
       - name: Download build
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build-temp-${{ github.sha }}
 
