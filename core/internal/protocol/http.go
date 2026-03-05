@@ -14,7 +14,7 @@ const (
 	CommonHeaderCCRX         = "23"
 	CommonHeaderPadding      = "233333"
 
-	StatusAuthOK = 500
+	StatusAuthOK = 2333
 )
 
 // AuthRequest is what client sends to server for authentication.

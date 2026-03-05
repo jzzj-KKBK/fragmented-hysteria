@@ -7,6 +7,7 @@ import (
 	"net"
 	"net/http"
 	"net/url"
+	"sync"
 	"time"
 
 	coreErrs "github.com/apernet/hysteria/core/v2/errors"
@@ -16,6 +17,12 @@ import (
 
 	"github.com/apernet/quic-go"
 	"github.com/apernet/quic-go/http3"
+)
+
+// Global TLS session cache for session resumption
+var (
+	tlsSessionCache     = tls.NewLRUClientSessionCache(128)
+	tlsSessionCacheLock sync.Mutex
 )
 
 const (
@@ -75,6 +82,11 @@ func (c *clientImpl) connect() (*HandshakeInfo, error) {
 		VerifyPeerCertificate: c.config.TLSConfig.VerifyPeerCertificate,
 		RootCAs:               c.config.TLSConfig.RootCAs,
 		GetClientCertificate:  c.config.TLSConfig.GetClientCertificate,
+		// Enable TLS session resumption
+		SessionTicketsDisabled: false,
+		ClientSessionCache:     tlsSessionCache,
+		// Enable TLS 1.3 0-RTT if supported
+		MinVersion: tls.VersionTLS13,
 	}
 	quicConfig := &quic.Config{
 		InitialStreamReceiveWindow:     c.config.QUICConfig.InitialStreamReceiveWindow,
@@ -87,6 +99,8 @@ func (c *clientImpl) connect() (*HandshakeInfo, error) {
 		EnableDatagrams:                true,
 		MaxDatagramFrameSize:           protocol.MaxDatagramFrameSize,
 		DisablePathManager:             true,
+		// Note: 0-RTT is enabled by default in quic-go when using TLS 1.3
+		// and session resumption is available
 	}
 	// Prepare RoundTripper
 	var conn *quic.Conn
