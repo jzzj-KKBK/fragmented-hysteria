@@ -6,15 +6,15 @@ import (
 )
 
 const (
-	URLHost = "213123"
-	URLPath = "/robots.txt"
+	URLHost = "hysteria"
+	URLPath = "/auth"
 
-	RequestHeaderAuth        = "233"
-	ResponseHeaderUDPEnabled = "2333"
-	CommonHeaderCCRX         = "23"
-	CommonHeaderPadding      = "233333"
+	RequestHeaderAuth        = "Hysteria-Auth"
+	ResponseHeaderUDPEnabled = "Hysteria-UDP"
+	CommonHeaderCCRX         = "Hysteria-CC-RX"
+	CommonHeaderPadding      = "Hysteria-Padding"
 
-	StatusAuthOK = 2333
+	StatusAuthOK = 233
 )
 
 // AuthRequest is what client sends to server for authentication.
